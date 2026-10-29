@@ -66,6 +66,29 @@ Markdown 标题为亮灰，链接、行内代码为次级灰；代码块采用�
 
 omp 交互模式会监听当前自定义主题文件并重载；新增文件后先在设置中选择一次。加载失败时检查 omp 的错误提示，不要把内置回退配色误认成 Clay。主题名称与内置主题冲突时，omp 优先加载内置版本。
 
+## 预览与验证
+
+需要 Bash、Make 和已安装的 omp，不需要 Node/Bun 依赖或模型请求：
+
+```bash
+make preview
+make preview ARGS='--tool edit --width 100'
+make preview ARGS='--surface composer'
+make preview ARGS='--surface segment'
+```
+
+`scripts/preview.sh` 创建临时 agent 目录，链接项目主题并将明暗槽都设为 Clay，然后运行真实的 `omp gallery`。脚本退出时删除临时目录，不安装主题、不改全局设置、不保存会话，也不读取用户模型凭据。预览同时设置两个槽仅用于稳定呈现深色主题，不代表提供浅色支持。
+
+如果 `omp` 是会联网更新的启动包装器，可显式指定已安装的二进制：
+
+```bash
+OMP=/path/to/installed/omp make preview ARGS='--tool edit'
+```
+
+默认 gallery 覆盖工具状态、八种输入框布局和状态栏组件。预览只是实际 renderer 的视觉检查，不是自动测试：omp 18.13.3 遇到缺少字段的自定义主题可能回退到内置配色且仍以 0 退出，不能只凭退出码判断加载成功。应确认出现 `#d97757` 陶土强调色和灰阶 Diff，再在实际会话检查 Markdown 与正文可读性。
+
+首次移植已检查完整的 66 个必需颜色字段及变量引用，运行全部 gallery，并捕获真实 ANSI 验证 Clay、亮灰新增和次级灰删除。没有修改 omp 的品牌色、会话强调色或其他独立设置。
+
 ## 来源
 
 色板与设计语义来自同级 `clay.nvim/lua/clay/palette.lua` 和 `highlights.lua`。此项目维护一份独立的 JSON 映射，不在运行时读取 Neovim 仓库；上游色板变化后应显式同步并检查预览。

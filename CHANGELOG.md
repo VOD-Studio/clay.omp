@@ -8,6 +8,7 @@
 - 覆盖正文、Markdown、语法、消息块、工具状态、Diff、思考档位、模式与状态栏配色。
 - 提供深色 HTML 导出画布配色；终端主画布沿用默认背景。
 - 记录链接／副本安装、profile 路径、深色槽选择、恢复方法及与 Neovim 的差异。
+- 提供隔离的 `make preview` 命令，直接调用真实 omp gallery，不修改用户配置。
 
 ### Verified
 
