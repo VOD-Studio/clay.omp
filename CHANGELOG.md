@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- README 新增两张 2× 主题预览：Edit／输入框与 Read 灰阶代码输出。
+- 注明截图使用真实 omp gallery ANSI 输出、字体与捕获方式，补充对应预览命令。
+
 ## 0.1.0 — 2026-10-30
 
 ### Added

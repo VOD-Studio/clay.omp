@@ -4,6 +4,10 @@
 
 主画布沿用终端背景；正文、语法、诊断、Diff 和 Git 状态以灰阶区分。`#d97757` Clay 用于活动焦点、模型名称和模式提示，而不是铺满整个界面。
 
+![Clay 主题：陶土色输入框、模式提示与灰阶 Diff](assets/overview.png)
+
+*交互焦点保留 Clay，增删内容以灰阶和符号区分。图中为 omp gallery 演示数据。*
+
 ## 安装
 
 需要支持真彩色的终端和具有自定义 JSON 主题功能的 omp。已在 **omp 18.13.3** 验证；不声称更早版本兼容。
@@ -68,11 +72,18 @@ omp 交互模式会监听当前自定义主题文件并重载；新增文件后�
 
 ## 预览与验证
 
+![Clay 主题：Read 工具中的灰阶代码、行号与输出边框](assets/code.png)
+
+截图来自 **omp 18.13.3 gallery** 的真实 ANSI 输出，使用 xterm.js 6.0.0、JetBrainsMono Nerd Font 和 Chromium 以 2× 分辨率捕获。仅裁剪 gallery 分节标题、组合 Edit 与输入框预览并添加展示外框；工具内容和配色未重绘，不含私人会话或凭据。截图主画布为 `#111315`，实际使用时沿用终端背景。
+
 需要 Bash、Make 和已安装的 omp，不需要 Node/Bun 依赖或模型请求：
 
 ```bash
 make preview
 make preview ARGS='--tool edit --width 100'
+make preview ARGS='--tool read --state done --width 92'
+make preview ARGS='--tool edit --state done --width 92'
+make preview ARGS='--composer claude --width 92'
 make preview ARGS='--surface composer'
 make preview ARGS='--surface segment'
 ```
